@@ -17,16 +17,18 @@ app.use(cors({ origin: env.clientOrigin }));
 app.use(morgan("dev"));
 app.use(express.json());
 
-// Health check endpoint
+// Health check
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "ok" });
 });
 
-// API routes - no /api prefix since Vercel rewrites /api/* to /api
+// API routes
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-export default app;
+// Export as both default (for old Vercel) and handler (for serverless)
+export default (req, res) => app(req, res);
+export { app };

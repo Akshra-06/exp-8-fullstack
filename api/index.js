@@ -51,7 +51,7 @@ const requireAuth = (req, res, next) => {
 // Routes
 app.get("/health", (req, res) => res.json({ status: "ok" }));
 
-app.post("/auth/register", async (req, res) => {
+app.post("/api/auth/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
     if (users.find((u) => u.email === email)) {
@@ -77,7 +77,7 @@ app.post("/auth/register", async (req, res) => {
   }
 });
 
-app.post("/auth/login", async (req, res) => {
+app.post("/api/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = users.find((u) => u.email === email);
@@ -101,7 +101,7 @@ app.post("/auth/login", async (req, res) => {
   }
 });
 
-app.get("/users/me", requireAuth, (req, res) => {
+app.get("/api/users/me", requireAuth, (req, res) => {
   const user = users.find((u) => u.id === req.user.id);
   res.json(
     user

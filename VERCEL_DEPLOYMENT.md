@@ -1,6 +1,7 @@
 # Vercel Deployment Guide
 
 ## Overview
+
 This full-stack application is configured for deployment on Vercel with HTTPS support.
 
 **Frontend:** React + Vite on Vercel  
@@ -41,7 +42,7 @@ On the "Configure Project" page:
 
 1. **Framework:** Select "Other"
 2. **Root Directory:** Leave empty (mono-repo detected automatically)
-3. **Build Command:** 
+3. **Build Command:**
    ```
    npm run build
    ```
@@ -51,13 +52,13 @@ On the "Configure Project" page:
 
 In "Environment Variables" section, add:
 
-| Key | Value |
-|-----|-------|
-| `PORT` | `3000` |
-| `NODE_ENV` | `production` |
-| `CLIENT_ORIGIN` | `https://exp-8-fullstack.vercel.app` |
-| `JWT_SECRET` | `8f2e9a7c3b1d5e8f4a2c0b6d9e1f3a7c5b8d2e0f1a4c6b9d3e7f0a2c5b8d1e4f` |
-| `JWT_EXPIRES_IN` | `1h` |
+| Key              | Value                                                              |
+| ---------------- | ------------------------------------------------------------------ |
+| `PORT`           | `3000`                                                             |
+| `NODE_ENV`       | `production`                                                       |
+| `CLIENT_ORIGIN`  | `https://exp-8-fullstack.vercel.app`                               |
+| `JWT_SECRET`     | `8f2e9a7c3b1d5e8f4a2c0b6d9e1f3a7c5b8d2e0f1a4c6b9d3e7f0a2c5b8d1e4f` |
+| `JWT_EXPIRES_IN` | `1h`                                                               |
 
 ⚠️ **Important:** Change `JWT_SECRET` to a secure random value before production!
 
@@ -79,9 +80,8 @@ Your frontend will automatically use the deployed backend since the API requests
 
 ```javascript
 // For production, use relative paths (they'll use the same domain)
-const baseURL = process.env.NODE_ENV === 'production' 
-  ? '/api'
-  : 'http://localhost:5001/api';
+const baseURL =
+  process.env.NODE_ENV === "production" ? "/api" : "http://localhost:5001/api";
 ```
 
 ### Test Your Deployment
@@ -117,6 +117,7 @@ https://exp-8-fullstack.vercel.app
 ## HTTPS Enabled by Default
 
 Vercel automatically provides HTTPS with free SSL certificates. Your app is secure at:
+
 - 🔒 `https://exp-8-fullstack.vercel.app`
 
 ---
@@ -124,16 +125,21 @@ Vercel automatically provides HTTPS with free SSL certificates. Your app is secu
 ## Troubleshooting
 
 ### Build Fails
+
 Check build logs in Vercel dashboard: Settings > Build & Development Settings
 
 ### API not responding
+
 Verify environment variables are set correctly in Vercel Settings > Environment Variables
 
 ### CORS errors
+
 The `CLIENT_ORIGIN` must exactly match your Vercel domain (with `https://`)
 
 ### Custom Domain
+
 To add a custom domain:
+
 1. Go to Vercel Settings > Domains
 2. Add your domain
 3. Update DNS records (instructions provided by Vercel)
@@ -143,10 +149,10 @@ To add a custom domain:
 
 ## Demo Accounts
 
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | admin@example.com | admin123 |
-| User | user@example.com | password123 |
+| Role  | Email             | Password    |
+| ----- | ----------------- | ----------- |
+| Admin | admin@example.com | admin123    |
+| User  | user@example.com  | password123 |
 
 ---
 

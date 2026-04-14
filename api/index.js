@@ -17,12 +17,14 @@ app.use(cors({ origin: env.clientOrigin }));
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.get("/api/health", (req, res) => {
+// Health check endpoint
+app.get("/health", (req, res) => {
   res.status(200).json({ status: "ok" });
 });
 
-app.use("/api/auth", authRouter);
-app.use("/api/users", userRouter);
+// API routes - no /api prefix since Vercel rewrites /api/* to /api
+app.use("/auth", authRouter);
+app.use("/users", userRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

@@ -3,10 +3,6 @@
   "buildCommand": "cd client && npm run build",
   "outputDirectory": "client/dist",
   "framework": "vite",
-  "env": {
-    "NODE_ENV": "production",
-    "CLIENT_ORIGIN": "@client-origin"
-  },
   "functions": {
     "api/index.js": {
       "runtime": "nodejs18.x"
